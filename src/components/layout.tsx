@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useState } from 'react'
 import styled from 'styled-components'
 
 export type TChildren = {
@@ -31,8 +31,28 @@ display: flex;
 }
 `
 
+const InputWrap = styled.form`
+position: relative;
+`
+
+const Input = styled.input`
+border-radius: 13px;
+padding: 10px 20px;
+border: none;
+outline: none;
+`
+const SearchButton = styled.button`
+border:none;
+background: none;
+position: absolute;
+right: 5px;
+top: 3px;
+`
+
+
 
 export const Layout = ({ children }: TChildren) => {
+  const [search, setSearch] = useState('')
   return (
     <>
       <Header>
@@ -40,14 +60,23 @@ export const Layout = ({ children }: TChildren) => {
           <img src="\imgs\capital-market.svg" width={300} />
           <a href="/">Market</a>
           <a href="/">News</a>
-          {/* <Ul>
-            <li>
-              <a href="/">Market</a>
-            </li>
-            <li>
-              <a href="/">News</a>
-            </li>
-          </Ul> */}
+          <InputWrap
+            onSubmit={(e) => {
+              e.preventDefault()
+              alert(`Поиск не работает. Поищите '${search}' в другом месте`)
+              setSearch('')
+            }}
+          >
+            <Input
+              placeholder="Search"
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value)
+                console.log(search)
+              }}
+            />
+            <SearchButton type="submit"><img src="imgs/search.svg" /></SearchButton>
+          </InputWrap>
         </Nav>
       </Header>
       <main>{children}</main>
