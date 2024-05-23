@@ -11,7 +11,7 @@ padding: 10px 0;
 `
 
 const Nav = styled.nav`
-margin: 0 auto;
+margin: 0 50px;
 max-width: 1000px;
 display:flex;
 justify-content: space-between;

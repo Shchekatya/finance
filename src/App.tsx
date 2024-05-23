@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Layout } from './components/layout';
+import { News } from './components/news/News';
 
 function App() {
   return (
@@ -20,7 +21,9 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <Layout></Layout>
+      <Layout>
+        <News />
+      </Layout>
     </div>
   );
 }
