@@ -1,17 +1,19 @@
-import { useState } from 'react'
 import { AppHeader } from './header/Header'
+import styled from 'styled-components'
 
 export type LayoutProps = {
   children?: string | JSX.Element | JSX.Element[]
 }
 
-
 export const Layout = ({ children }: LayoutProps) => {
-  const [search, setSearch] = useState('')
   return (
     <>
       <AppHeader />
-      <main>{children}</main>
+      <AppMain>{children}</AppMain>
     </>
   );
 }
+
+const AppMain = styled.main`
+height: 100vh;
+`

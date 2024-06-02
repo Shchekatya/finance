@@ -4,6 +4,7 @@ import { Container, Header, HeaderRoot, HeaderBack, HeaderMinimize, HeaderLogo, 
 import AppLogo from '../../../public/imgs/capital-market.svg'
 import { ReactComponent as SearchSVG } from '../../assets/search.svg'
 import { accent, primary } from '@salutejs/plasma-tokens';
+import { Link } from 'react-router-dom'
 
 export const AppHeader = () => {
   const [search, setSearch] = useState('')
@@ -28,8 +29,8 @@ export const AppHeader = () => {
           </HeaderTitleWrapper>
           <HeaderContent>
             <Nav>
-              <a href="/">Market</a>
-              <a href="/">News</a>
+              <Link to="/">Market</Link>
+              <Link to="/news">News</Link>
               <InputWrap
                 onSubmit={(e) => {
                   e.preventDefault()

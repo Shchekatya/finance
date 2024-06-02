@@ -3,14 +3,18 @@ import logo from './logo.svg';
 import './App.css';
 import { Layout } from './components/layout';
 import { News } from './components/news/News';
+import { Routing } from './components/routing';
+import { BrowserRouter } from "react-router-dom";
 
 
 function App() {
   return (
     <div className="App">
-      <Layout>
-        <News />
-      </Layout>
+      <BrowserRouter>
+        <Layout>
+          <Routing />
+        </Layout>
+      </BrowserRouter>
     </div>
   );
 }

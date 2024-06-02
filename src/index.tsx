@@ -16,7 +16,7 @@ root.render(
         <App />
         <GlobalStyle />
       </SSRProvider>
-    </DeviceThemeProvider>,
+    </DeviceThemeProvider>
   </React.StrictMode>
 );
 
