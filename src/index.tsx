@@ -3,13 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { DeviceThemeProvider, SSRProvider } from '@salutejs/plasma-ui';
+import { GlobalStyle } from './components/common/GlobalStyle';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <DeviceThemeProvider>
+      <SSRProvider>
+        <App />
+        <GlobalStyle />
+      </SSRProvider>
+    </DeviceThemeProvider>,
   </React.StrictMode>
 );
 
