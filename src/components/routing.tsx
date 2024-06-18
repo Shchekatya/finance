@@ -10,10 +10,6 @@ export const Routing = () => {
       <Routes>
         <Route path="/" element={<Market />} />
         <Route path="/news" element={<News />} />
-        {/* <Route
-          path="/market/:ingredientId"
-          element={<IngredientDetails />}
-        /> */}
       </Routes>
     </>
   );
