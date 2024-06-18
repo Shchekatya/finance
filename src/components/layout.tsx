@@ -1,56 +1,19 @@
-import { Link } from "react-router-dom";
+import { AppHeader } from './header/Header'
 import styled from 'styled-components'
 
-export type TChildren = {
+export type LayoutProps = {
   children?: string | JSX.Element | JSX.Element[]
 }
 
-const Header = styled.header`
-background: #4D82E3;
-padding: 10px 0;
-`
-
-const Nav = styled.nav`
-margin: 0 auto;
-max-width: 1000px;
-display:flex;
-justify-content: space-between;
-align-items: center;
-& a {
-  text-decoration:none;
-  color: #212529;
-  font-weight: bold;
-  font-size: 25px;
-}
-`
-
-const Ul = styled.ul`
-display: flex;
-& li {
-  list-style-type: none;
-}
-`
-
-
-export const Layout = ({ children }: TChildren) => {
+export const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <Header>
-        <Nav>
-          <img src="\imgs\capital-market.svg" width={300} />
-          <a href="/">Market</a>
-          <a href="/">News</a>
-          {/* <Ul>
-            <li>
-              <a href="/">Market</a>
-            </li>
-            <li>
-              <a href="/">News</a>
-            </li>
-          </Ul> */}
-        </Nav>
-      </Header>
-      <main>{children}</main>
+      <AppHeader />
+      <AppMain>{children}</AppMain>
     </>
   );
 }
+
+const AppMain = styled.main`
+height: 100vh;
+`
