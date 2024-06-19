@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Button } from '@salutejs/plasma-ui';
 import { accent, primary, secondary } from '@salutejs/plasma-tokens';
+import { useNavigate } from 'react-router-dom';
 
 export type NewsArticleProps = {
   id: string,
@@ -10,6 +11,7 @@ export type NewsArticleProps = {
 }
 
 export const NewsArticle = ({ id, title, text, link }: NewsArticleProps) => {
+  const navigateItem = useNavigate()
   return (
     <>
       <ArticleWrap>
@@ -19,7 +21,7 @@ export const NewsArticle = ({ id, title, text, link }: NewsArticleProps) => {
         <p>
           {text}
         </p>
-        <Button view="checked" text="READ" />
+        <Button view="checked" text="READ" onClick={() => { navigateItem(`/news/${id}`) }} />
       </ArticleWrap>
     </>
   );

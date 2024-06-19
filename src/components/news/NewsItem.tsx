@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import { Title } from "../common/Title";
 
-export const MarketItem = () => {
+export const NewsItem = () => {
   const { slug } = useParams()
 
   return (
     <>
-      <Title>MarketItem {slug}</Title>
+      <Title>NewsItem {slug}</Title>
     </>
   );
 }
