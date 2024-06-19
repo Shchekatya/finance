@@ -2,13 +2,14 @@ import styled from 'styled-components'
 import { Button } from '@salutejs/plasma-ui';
 import { accent, primary, secondary } from '@salutejs/plasma-tokens';
 
-export type ArticleProps = {
+export type NewsArticleProps = {
+  id: string,
   title: string,
   text: string,
   link?: string
 }
 
-export const Article = ({ title, text, link }: ArticleProps) => {
+export const NewsArticle = ({ id, title, text, link }: NewsArticleProps) => {
   return (
     <>
       <ArticleWrap>
