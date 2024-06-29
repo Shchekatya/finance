@@ -5,6 +5,7 @@ import { H1, H2, H4, H5 } from '@salutejs/plasma-ui';
 import { BodyL } from '@salutejs/plasma-ui';
 import { bodyL } from '@salutejs/plasma-typo';
 import { NewsArticle } from './NewsArticle';
+import { useState } from 'react';
 
 export type ArticleArrType = {
   id: string,
@@ -29,9 +30,39 @@ const articleArr: ArticleArrType[] = [
     title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
     text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
   },
+  {
+    id: "4",
+    title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
+    text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
+  },
+  {
+    id: "5",
+    title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
+    text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
+  },
+  {
+    id: "6",
+    title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
+    text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
+  },
+  {
+    id: "7",
+    title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
+    text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
+  },
 ]
 
 export const News = () => {
+  const [show, setShow] = useState(3)
+  console.log(articleArr.length, show)
+  const NewsPagination = () => {
+    if ((articleArr.length - show) >= 3) {
+      setShow(show + 3)
+    } else {
+      setShow(show + (articleArr.length - show))
+    }
+  }
+
   return (
     <>
       <Title>News</Title>
@@ -46,11 +77,15 @@ export const News = () => {
       </div>
 
       <Wrap>
-        {articleArr.map(article => {
-          return <NewsArticle id={article.id} title={article.title} text={article.text} key={article.id} />
+        {articleArr.map((article, index) => {
+          if (index < show) {
+            return <NewsArticle id={article.id} title={article.title} text={article.text} key={article.id} />
+          }
         })}
       </Wrap>
-      <Button text="Show more" size="l" view="primary" />
+      {articleArr.length > show &&
+        < Button text="Show more" size="l" view="primary" onClick={() => NewsPagination()} />
+      }
     </>
   );
 }
@@ -58,5 +93,6 @@ export const News = () => {
 const Wrap = styled.div`
   margin: 0 50px;
   display: flex;
-  justify-content: space-between;
-`
+  justify-content: center;
+  flex-wrap: wrap;
+  `

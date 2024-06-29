@@ -27,7 +27,7 @@ const H3 = styled.h3`
 `
 
 const ArticleWrap = styled.div`
-  max-width: 30%;
+  width: 25%;
   margin: 10px;
   padding: 30px 27px;
   border: 1px solid #B9C1D9;
