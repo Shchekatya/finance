@@ -2,9 +2,10 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { Container, Header, HeaderRoot, HeaderBack, HeaderMinimize, HeaderLogo, HeaderTitleWrapper, HeaderSubtitle, HeaderTitle, HeaderContent, TextField } from '@salutejs/plasma-ui'
 import AppLogo from '../../../public/imgs/capital-market.svg'
-import { ReactComponent as SearchSVG } from '../../assets/search.svg'
+import { ReactComponent as SearchSVG } from '../../assets/search1.svg'
 import { accent, primary } from '@salutejs/plasma-tokens';
 import { Link } from 'react-router-dom'
+
 
 export const AppHeader = () => {
   const [search, setSearch] = useState('')
@@ -19,9 +20,14 @@ export const AppHeader = () => {
   };
 
   const onSearchSubmit = (e: any) => {
-    e.preventDefault()
-    alert(`Поиск не работает. Поищите '${search}' в другом месте`)
-    setSearch('')
+    if (search != '') {
+      e.preventDefault()
+      alert(`Поиск не работает. Поищите '${search}' в другом месте`)
+      setSearch('')
+    } else {
+      alert(`Заполните это поле`)
+    }
+
   };
   return (
     <>
@@ -47,9 +53,8 @@ export const AppHeader = () => {
                   onChange={(e) => {
                     setSearch(e.target.value)
                   }}
-                  contentRight={<SearchSVG />}
+                  contentRight={<SVG onClick={onSearchSubmit} />}
                 />
-
               </InputWrap>
             </Nav>
           </HeaderContent>
@@ -79,6 +84,11 @@ display: flex;
   list-style-type: none;
   margin: 5px;
 }
+`
+
+const SVG = styled(SearchSVG)`
+width: 1.5rem;
+padding: 10px;
 `
 
 const InputWrap = styled.form`
