@@ -4,18 +4,28 @@ import { Button } from '@salutejs/plasma-ui';
 import { H1, H2, H4, H5 } from '@salutejs/plasma-ui';
 import { BodyL } from '@salutejs/plasma-ui';
 import { bodyL } from '@salutejs/plasma-typo';
-import { Article } from './Article';
+import { NewsArticle } from './NewsArticle';
 
-const ArticleArr = [
+export type ArticleArrType = {
+  id: string,
+  title: string,
+  text: string,
+  link?: string
+}
+
+const articleArr: ArticleArrType[] = [
   {
+    id: "1",
     title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
     text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
   },
   {
+    id: "2",
     title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
     text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
   },
   {
+    id: "3",
     title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
     text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
   },
@@ -36,8 +46,8 @@ export const News = () => {
       </div>
 
       <Wrap>
-        {ArticleArr.map(article => {
-          return <Article title={article.title} text={article.text} />
+        {articleArr.map(article => {
+          return <NewsArticle id={article.id} title={article.title} text={article.text} key={article.id} />
         })}
       </Wrap>
       <Button text="Show more" size="l" view="primary" />
