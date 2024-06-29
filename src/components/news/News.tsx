@@ -6,7 +6,14 @@ import { BodyL } from '@salutejs/plasma-ui';
 import { bodyL } from '@salutejs/plasma-typo';
 import { NewsArticle } from './NewsArticle';
 
-const ArticleArr = [
+export type ArticleArrType = {
+  id: string,
+  title: string,
+  text: string,
+  link?: string
+}
+
+const articleArr: ArticleArrType[] = [
   {
     id: "1",
     title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
@@ -39,7 +46,7 @@ export const News = () => {
       </div>
 
       <Wrap>
-        {ArticleArr.map(article => {
+        {articleArr.map(article => {
           return <NewsArticle id={article.id} title={article.title} text={article.text} key={article.id} />
         })}
       </Wrap>

@@ -5,8 +5,6 @@ export const NewsItem = () => {
   const { slug } = useParams()
 
   return (
-    <>
-      <Title>NewsItem {slug}</Title>
-    </>
+    <Title>NewsItem {slug}</Title>
   );
 }

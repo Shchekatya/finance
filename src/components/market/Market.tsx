@@ -2,7 +2,14 @@ import { Title } from "../common/Title";
 import { MarketRow } from "./MarketRow";
 import styled from 'styled-components'
 
-const MarketArr = [
+export type MarketArrType = {
+  id: string,
+  name: string,
+  price: string,
+  change: string,
+}
+
+const marketArr: MarketArrType[] = [
   {
     id: "1",
     name: "Bitcoin",
@@ -45,8 +52,8 @@ export const Market = () => {
           </tr>
         </thead>
         <tbody>
-          {MarketArr.map(market => {
-            return <MarketRow id={market.id} name={market.name} price={market.price} change={market.change} key={market.id} />
+          {marketArr.map(market => {
+            return <MarketRow {...market} key={market.id} />
           })}
         </tbody>
       </Table>

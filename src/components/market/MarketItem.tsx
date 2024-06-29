@@ -5,8 +5,6 @@ export const MarketItem = () => {
   const { slug } = useParams()
 
   return (
-    <>
-      <Title>MarketItem {slug}</Title>
-    </>
+    <Title>MarketItem {slug}</Title>
   );
 }

@@ -1,16 +1,11 @@
 import { Button } from '@salutejs/plasma-ui';
 import styled from 'styled-components'
 import { accent, primary, secondary } from '@salutejs/plasma-tokens';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { MarketArrType } from "./Market";
 
-export type MarketRowProps = {
-  id: string,
-  name: string,
-  price: string,
-  change: string,
-}
 
-export const MarketRow = ({ id, name, price, change }: MarketRowProps) => {
+export const MarketRow = ({ id, name, price, change }: MarketArrType) => {
   const navigateItem = useNavigate()
 
   return (
@@ -18,9 +13,7 @@ export const MarketRow = ({ id, name, price, change }: MarketRowProps) => {
       <td>{name}</td>
       <td>{price}</td>
       <td>{change}</td>
-      <td><Button size="s" text="MORE" onClick={() => {
-        navigateItem(`/market/${id}`)
-      }} /></td>
+      <td><Button size="s" text="MORE" onClick={() => navigateItem(`/market/${id}`)} /></td>
     </Tr>
   );
 }
