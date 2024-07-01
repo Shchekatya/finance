@@ -5,6 +5,7 @@ import { H1, H2, H4, H5 } from '@salutejs/plasma-ui';
 import { BodyL } from '@salutejs/plasma-ui';
 import { bodyL } from '@salutejs/plasma-typo';
 import { NewsArticle } from './NewsArticle';
+import { useState } from 'react';
 
 export type ArticleArrType = {
   id: string,
@@ -29,28 +30,54 @@ const articleArr: ArticleArrType[] = [
     title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
     text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
   },
+  {
+    id: "4",
+    title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
+    text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
+  },
+  {
+    id: "5",
+    title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
+    text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
+  },
+  {
+    id: "6",
+    title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
+    text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
+  },
+  {
+    id: "7",
+    title: 'Dow Jones Touches Record Highs, Helped By These Economic Data Surprises',
+    text: 'The Dow Jones Industrial Average started to take a breather Wednesday after scaling to record highs, but the index pared its losses by midday and headed for its...'
+  },
 ]
 
 export const News = () => {
+  const DEFAULT_NEWS_COUNT = 3
+  const [show, setShow] = useState(DEFAULT_NEWS_COUNT)
+  const UNSHOWED_NEWS_LEFT = (articleArr.length - show)
+
+  const onShowMoreNewsClick = () => {
+    if (UNSHOWED_NEWS_LEFT >= DEFAULT_NEWS_COUNT) {
+      setShow(show + DEFAULT_NEWS_COUNT)
+    } else {
+      setShow(show + UNSHOWED_NEWS_LEFT)
+    }
+  }
+
   return (
     <>
       <Title>News</Title>
-      <BodyL>Hello, World!</BodyL>
-      <div style={bodyL}>This is Plasma.</div>
-      <div style={{ display: 'block' }}>
-        <H1>H1 Bold</H1>
-        <H2>H2 Bold</H2>
-        <H4 bold={false}>
-          H4
-        </H4>
-      </div>
-
       <Wrap>
-        {articleArr.map(article => {
-          return <NewsArticle id={article.id} title={article.title} text={article.text} key={article.id} />
+        {articleArr.map((article, index) => {
+          if (index < show) {
+            return <NewsArticle {...article} key={article.id} />
+          }
         })}
       </Wrap>
-      <Button text="Show more" size="l" view="primary" />
+      {articleArr.length > show &&
+        < Button text="Show more" size="l" view="primary" onClick={() => onShowMoreNewsClick()} />
+      }
     </>
   );
 }
@@ -58,5 +85,6 @@ export const News = () => {
 const Wrap = styled.div`
   margin: 0 50px;
   display: flex;
-  justify-content: space-between;
-`
+  justify-content: center;
+  flex-wrap: wrap;
+  `

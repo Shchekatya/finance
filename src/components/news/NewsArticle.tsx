@@ -4,8 +4,10 @@ import { accent, primary, secondary } from '@salutejs/plasma-tokens';
 import { useNavigate } from 'react-router-dom';
 import { ArticleArrType } from './News';
 
+type NewsArticleProps = ArticleArrType
 
-export const NewsArticle = ({ id, title, text, link }: ArticleArrType) => {
+export const NewsArticle = ({ ...article }: NewsArticleProps) => {
+  const { id, title, text, link } = article
   const navigateItem = useNavigate()
   return (
     <ArticleWrap>
@@ -27,7 +29,7 @@ const H3 = styled.h3`
 `
 
 const ArticleWrap = styled.div`
-  max-width: 30%;
+  width: 25%;
   margin: 10px;
   padding: 30px 27px;
   border: 1px solid #B9C1D9;
