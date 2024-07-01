@@ -53,38 +53,30 @@ const articleArr: ArticleArrType[] = [
 ]
 
 export const News = () => {
-  const [show, setShow] = useState(3)
-  console.log(articleArr.length, show)
-  const NewsPagination = () => {
-    if ((articleArr.length - show) >= 3) {
-      setShow(show + 3)
+  const DEFAULT_NEWS_COUNT = 3
+  const [show, setShow] = useState(DEFAULT_NEWS_COUNT)
+  const UNSHOWED_NEWS_LEFT = (articleArr.length - show)
+
+  const onShowMoreNewsClick = () => {
+    if (UNSHOWED_NEWS_LEFT >= DEFAULT_NEWS_COUNT) {
+      setShow(show + DEFAULT_NEWS_COUNT)
     } else {
-      setShow(show + (articleArr.length - show))
+      setShow(show + UNSHOWED_NEWS_LEFT)
     }
   }
 
   return (
     <>
       <Title>News</Title>
-      <BodyL>Hello, World!</BodyL>
-      <div style={bodyL}>This is Plasma.</div>
-      <div style={{ display: 'block' }}>
-        <H1>H1 Bold</H1>
-        <H2>H2 Bold</H2>
-        <H4 bold={false}>
-          H4
-        </H4>
-      </div>
-
       <Wrap>
         {articleArr.map((article, index) => {
           if (index < show) {
-            return <NewsArticle id={article.id} title={article.title} text={article.text} key={article.id} />
+            return <NewsArticle {...article} key={article.id} />
           }
         })}
       </Wrap>
       {articleArr.length > show &&
-        < Button text="Show more" size="l" view="primary" onClick={() => NewsPagination()} />
+        < Button text="Show more" size="l" view="primary" onClick={() => onShowMoreNewsClick()} />
       }
     </>
   );

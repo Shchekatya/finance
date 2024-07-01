@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { Container, Header, HeaderRoot, HeaderBack, HeaderMinimize, HeaderLogo, HeaderTitleWrapper, HeaderSubtitle, HeaderTitle, HeaderContent, TextField } from '@salutejs/plasma-ui'
-import AppLogo from '../../../public/imgs/capital-market.svg'
+import { Container, HeaderRoot, HeaderBack, HeaderMinimize, HeaderLogo, HeaderTitleWrapper, HeaderSubtitle, HeaderTitle, HeaderContent, TextField } from '@salutejs/plasma-ui'
 import { ReactComponent as SearchSVG } from '../../assets/search1.svg'
-import { accent, primary } from '@salutejs/plasma-tokens';
+import LogoSVG from '../../assets/capital-market.svg'
+import { primary } from '@salutejs/plasma-tokens';
 import { Link } from 'react-router-dom'
+import { SyntheticEvent } from 'react'
 
 
 export const AppHeader = () => {
@@ -19,7 +20,7 @@ export const AppHeader = () => {
     setIsBack(true);
   };
 
-  const onSearchSubmit = (e: any) => {
+  const onSearchSubmit = (e: SyntheticEvent) => {
     if (search != '') {
       e.preventDefault()
       alert(`Поиск не работает. Поищите '${search}' в другом месте`)
@@ -34,7 +35,8 @@ export const AppHeader = () => {
       <Container>
         <HeaderRoot>
           {isBack ? <HeaderBack onClick={onBackClick} /> : <HeaderMinimize onClick={onMinimizeClick} />}
-          <HeaderLogo src="/imgs/capital-market.svg" alt="Logo" />
+          {/* <HeaderLogo src="/imgs/capital-market.svg" alt="Logo" /> */}
+          <HeaderLogo src={LogoSVG} alt="Logo" />
           <HeaderTitleWrapper>
             <HeaderSubtitle>Label text</HeaderSubtitle>
             <HeaderTitle>Header title text</HeaderTitle>
@@ -53,7 +55,7 @@ export const AppHeader = () => {
                   onChange={(e) => {
                     setSearch(e.target.value)
                   }}
-                  contentRight={<SVG onClick={onSearchSubmit} />}
+                  contentRight={<SearchIcon onClick={onSearchSubmit} />}
                 />
               </InputWrap>
             </Nav>
@@ -86,8 +88,8 @@ display: flex;
 }
 `
 
-const SVG = styled(SearchSVG)`
-width: 1.5rem;
+const SearchIcon = styled(SearchSVG)`
+width: 25px;
 padding: 10px;
 `
 

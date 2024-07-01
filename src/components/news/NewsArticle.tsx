@@ -4,8 +4,10 @@ import { accent, primary, secondary } from '@salutejs/plasma-tokens';
 import { useNavigate } from 'react-router-dom';
 import { ArticleArrType } from './News';
 
+type NewsArticleProps = ArticleArrType
 
-export const NewsArticle = ({ id, title, text, link }: ArticleArrType) => {
+export const NewsArticle = ({ ...article }: NewsArticleProps) => {
+  const { id, title, text, link } = article
   const navigateItem = useNavigate()
   return (
     <ArticleWrap>
