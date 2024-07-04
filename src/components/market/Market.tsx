@@ -14,7 +14,7 @@ const marketArr: MarketArrType[] = [
     id: "1",
     name: "Bitcoin",
     price: "25,298.8 CHF",
-    change: "-0.08%",
+    change: "+0.18%",
   },
   {
     id: "2",

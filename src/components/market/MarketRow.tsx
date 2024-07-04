@@ -1,6 +1,6 @@
 import { Button } from '@salutejs/plasma-ui';
 import styled from 'styled-components'
-import { accent, primary, secondary } from '@salutejs/plasma-tokens';
+import { accent, primary, secondary, critical } from '@salutejs/plasma-tokens';
 import { useNavigate } from 'react-router-dom';
 import { MarketArrType } from "./Market";
 
@@ -15,7 +15,7 @@ export const MarketRow = ({ ...market }: MarketRowProps) => {
     <Tr>
       <td>{name}</td>
       <td>{price}</td>
-      <td>{change}</td>
+      <ChangeTd change={change}>{change}</ChangeTd>
       <td><MoreButton size="s" text="MORE" onClick={() => navigateItem(`/market/${id}`)} /></td>
     </Tr>
   );
@@ -26,9 +26,14 @@ const Tr = styled.tr`
   border-left-width: 0;
   border-right-width: 0;
 `
-
+interface ChangeTd {
+  change: string
+}
+const ChangeTd = styled.td<ChangeTd>`
+  color: ${({ change }) => change[0] === '+' ? `${accent}` : `${critical}`};
+`
 const MoreButton = styled(Button)`
-  margin: 10px;
+margin: 10px;
 `
 
 
