@@ -1,3 +1,4 @@
+import { getMarket } from "../../services/actions/get_market";
 import { Title } from "../common/Title";
 import { MarketRow } from "./MarketRow";
 import styled from 'styled-components'
@@ -39,6 +40,7 @@ const marketArr: MarketArrType[] = [
 
 export const Market = () => {
 
+  getMarket()
   return (
     <>
       <Title>Market</Title>

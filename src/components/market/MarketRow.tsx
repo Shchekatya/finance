@@ -8,7 +8,6 @@ type MarketRowProps = MarketArrType
 
 export const MarketRow = ({ ...market }: MarketRowProps) => {
   const { id, name, price, change } = market
-  console.log(market)
   const navigateItem = useNavigate()
 
   return (
