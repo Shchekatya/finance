@@ -1,7 +1,12 @@
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../services/toolkit";
 import { getMarket } from "../../services/actions/get_market";
 import { Title } from "../common/Title";
 import { MarketRow } from "./MarketRow";
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { useEffect } from "react";
+import { GET_MARKET } from "../../services/toolkit/toolkitSlice";
+
 
 export type MarketArrType = {
   id: string,
@@ -35,12 +40,18 @@ const marketArr: MarketArrType[] = [
     price: "53.527 CHF",
     change: "-6.07%",
   },
-
 ]
 
-export const Market = () => {
 
-  getMarket()
+export const Market = () => {
+  const dispatch = useDispatch()
+  const marketLoaded = useSelector((state: RootState) => state.toolkit.market)
+  console.log(marketLoaded)
+
+  useEffect(() => {
+    getMarket()
+  }, []);
+
   return (
     <>
       <Title>Market</Title>
@@ -59,6 +70,7 @@ export const Market = () => {
           })}
         </tbody>
       </Table>
+      <button onClick={() => dispatch(GET_MARKET('hkcu'))}></button>
     </>
   );
 }
