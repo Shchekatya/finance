@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { accent, primary, secondary, critical } from '@salutejs/plasma-tokens';
 import { useNavigate } from 'react-router-dom';
 import { MarketArrType } from "./Market";
+import { NavigateButton } from '../common/NavigateButton';
 
 type MarketRowProps = MarketArrType
 
@@ -15,7 +16,7 @@ export const MarketRow = ({ ...market }: MarketRowProps) => {
       <td>{name}</td>
       <td>{price}</td>
       <ChangeTd change={change}>{change}</ChangeTd>
-      <td><MoreButton size="s" text="MORE" onClick={() => navigateItem(`/market/${id}`)} /></td>
+      <td><NavigateButton text="MORE" id={id} url="market" view="secondary" size="s" /></td>
     </Tr>
   );
 }

@@ -3,6 +3,7 @@ import { Button } from '@salutejs/plasma-ui';
 import { accent, primary, secondary } from '@salutejs/plasma-tokens';
 import { useNavigate } from 'react-router-dom';
 import { ArticleArrType } from './News';
+import { NavigateButton } from '../common/NavigateButton';
 
 type NewsArticleProps = ArticleArrType
 
@@ -17,7 +18,7 @@ export const NewsArticle = ({ ...article }: NewsArticleProps) => {
       <p>
         {text}
       </p>
-      <Button view="checked" text="READ" onClick={() => navigateItem(`/news/${id}`)} />
+      <NavigateButton text="READ" id={id} url="news" view="checked" size="m" />
     </ArticleWrap>
   );
 }
