@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { Container, HeaderRoot, HeaderBack, HeaderMinimize, HeaderLogo, HeaderTitleWrapper, HeaderSubtitle, HeaderTitle, HeaderContent, TextField } from '@salutejs/plasma-ui'
+import { Container, HeaderRoot, HeaderLogo, HeaderTitleWrapper, HeaderTitle, HeaderContent, TextField } from '@salutejs/plasma-ui'
 import { ReactComponent as SearchSVG } from '../../assets/search1.svg'
 import LogoSVG from '../../assets/capital-market.svg'
 import { primary } from '@salutejs/plasma-tokens';
@@ -10,15 +10,6 @@ import { SyntheticEvent } from 'react'
 
 export const AppHeader = () => {
   const [search, setSearch] = useState('')
-  const [isBack, setIsBack] = useState(true);
-
-  const onBackClick = () => {
-    setIsBack(false);
-  };
-
-  const onMinimizeClick = () => {
-    setIsBack(true);
-  };
 
   const onSearchSubmit = (e: SyntheticEvent) => {
     if (search != '') {
@@ -34,12 +25,9 @@ export const AppHeader = () => {
     <>
       <Container>
         <HeaderRoot>
-          {isBack ? <HeaderBack onClick={onBackClick} /> : <HeaderMinimize onClick={onMinimizeClick} />}
-          {/* <HeaderLogo src="/imgs/capital-market.svg" alt="Logo" /> */}
-          <HeaderLogo src={LogoSVG} alt="Logo" />
+          <HeaderLogoBig src={LogoSVG} alt="Logo" />
           <HeaderTitleWrapper>
-            <HeaderSubtitle>Label text</HeaderSubtitle>
-            <HeaderTitle>Header title text</HeaderTitle>
+            <HeaderTitle>Capital Market</HeaderTitle>
           </HeaderTitleWrapper>
           <HeaderContent>
             <Nav>
@@ -74,8 +62,8 @@ align-items: center;
   color: ${primary};
   text-decoration:none;
   font-weight: bold;
-  font-size: 25px;
-  margin-right: 10px;
+  font-size: 20px;
+  margin-right: 30px;
 
 }
 `
@@ -91,6 +79,13 @@ display: flex;
 const SearchIcon = styled(SearchSVG)`
 width: 25px;
 padding: 10px;
+`
+
+const HeaderLogoBig = styled(HeaderLogo)`
+flex: 0 0 65px;
+& img {
+  height: 100%;
+}
 `
 
 const InputWrap = styled.form`

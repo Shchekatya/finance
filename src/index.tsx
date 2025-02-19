@@ -1,22 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { DeviceThemeProvider, SSRProvider } from '@salutejs/plasma-ui';
 import { GlobalStyle } from './components/common/GlobalStyle';
+import { store } from './services/toolkit';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <DeviceThemeProvider responsiveTypo>
-      <SSRProvider>
-        <App />
-        <GlobalStyle />
-      </SSRProvider>
-    </DeviceThemeProvider>
+    <Provider store={store}>
+      <DeviceThemeProvider responsiveTypo>
+        <SSRProvider>
+          <App />
+          <GlobalStyle />
+        </SSRProvider>
+      </DeviceThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
 
