@@ -7,7 +7,7 @@ const toolkitSlice = createSlice({
   },
   reducers: {
     GET_MARKET(state, action) {
-      state.market.push(action.payload)
+      state.market=(action.payload)
       console.log(action.payload)
       console.log(state.market)
     }

@@ -22,7 +22,7 @@ export function getMarket() {
       .then((res) => {
         dispatch(GET_MARKET(res.data));
       })
-      // .then((res) => console.log(res.data))
+      //.then((res) => console.log(res.data))
       .catch((err) => {
         console.log(err)
       });

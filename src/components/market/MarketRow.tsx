@@ -8,29 +8,29 @@ import { NavigateButton } from '../common/NavigateButton';
 type MarketRowProps = MarketArrType
 
 export const MarketRow = ({ ...market }: MarketRowProps) => {
-  const { id, name, price, change } = market
+  const { ticker, name, price, day_change } = market
   const navigateItem = useNavigate()
 
   return (
     <Tr>
       <td>{name}</td>
       <td>{price}</td>
-      <ChangeTd change={change}>{change}</ChangeTd>
-      <td><NavigateButton text="MORE" id={id} url="market" view="secondary" size="s" /></td>
+      <ChangeTd day_change={day_change}>{day_change}</ChangeTd>
+      <td><NavigateButton text="MORE" id={ticker} url="market" view="secondary" size="s" /></td>
     </Tr>
   );
 }
 
 const Tr = styled.tr`
-  border: 1px solid ${primary};
-  border-left-width: 0;
-  border-right-width: 0;
+  border: 1px solticker ${primary};
+  border-left-wtickerth: 0;
+  border-right-wtickerth: 0;
 `
 interface ChangeTd {
-  change: string
+  day_change: number
 }
 const ChangeTd = styled.td<ChangeTd>`
-  color: ${({ change }) => change[0] === '+' ? `${accent}` : `${critical}`};
+  color: ${({ day_change }) => day_change < 0 ? `${critical}` : `${accent}`}
 `
 const MoreButton = styled(Button)`
 margin: 10px;

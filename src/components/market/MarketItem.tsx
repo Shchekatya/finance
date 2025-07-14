@@ -67,7 +67,7 @@ export const MarketItem = () => {
 }
 
 const ChartView = styled.div`
-  width: 70%;
+  wtickerth: 70%;
   margin: 0 auto;
 `
 

@@ -6,50 +6,33 @@ import { MarketRow } from "./MarketRow";
 import styled from 'styled-components';
 import { useEffect } from "react";
 import { GET_MARKET } from "../../services/toolkit/toolkitSlice";
+import { useAppDispatch } from "../../services/hooks/hooks"
+
+const checkResponse = (res: Response) => {
+  if (res.ok) {
+    console.log('все ок')
+    return res.json();
+  }
+  return Promise.reject(`Ошибка ${res.status}`)
+}
 
 
 export type MarketArrType = {
-  id: string,
+  ticker: string,
   name: string,
   price: string,
-  change: string,
+  day_change: number,
 }
 
-const marketArr: MarketArrType[] = [
-  {
-    id: "1",
-    name: "Bitcoin",
-    price: "25,298.8 CHF",
-    change: "+0.18%",
-  },
-  {
-    id: "2",
-    name: "Dash",
-    price: "53.527 CHF",
-    change: "-6.07%",
-  },
-  {
-    id: "3",
-    name: "Ethereum",
-    price: "1,599.91 CHF",
-    change: "-1%",
-  },
-  {
-    id: "4",
-    name: "PAX Gold",
-    price: "53.527 CHF",
-    change: "-6.07%",
-  },
-]
 
 
 export const Market = () => {
-  const dispatch = useDispatch()
-  const marketLoaded = useSelector((state: RootState) => state.toolkit.market)
+  const dispatch = useAppDispatch()
+  const marketLoaded: MarketArrType[] = useSelector((state: RootState) => state.toolkit.market)
   console.log(marketLoaded)
 
   useEffect(() => {
-    getMarket()
+    dispatch(getMarket())
   }, []);
 
   return (
@@ -60,13 +43,13 @@ export const Market = () => {
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
-            <th scope="col">Change</th>
+            <th scope="col">Day change</th>
             <th scope="col">More</th>
           </tr>
         </thead>
         <tbody>
-          {marketArr.map(market => {
-            return <MarketRow {...market} key={market.id} />
+          {marketLoaded.map(market => {
+            return <MarketRow {...market} key={market.ticker} />
           })}
         </tbody>
       </Table>
