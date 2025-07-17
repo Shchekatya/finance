@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import toolkitSlice from "./toolkitSlice";
+import newsSlice from "./newsSlice"
 
 const rootReducer = combineReducers({
-  toolkit: toolkitSlice
+  toolkit: toolkitSlice,
+  news: newsSlice,
 })
 
 export const store = configureStore({

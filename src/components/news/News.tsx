@@ -5,7 +5,9 @@ import { H1, H2, H4, H5 } from '@salutejs/plasma-ui';
 import { BodyL } from '@salutejs/plasma-ui';
 import { bodyL } from '@salutejs/plasma-typo';
 import { NewsArticle } from './NewsArticle';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAppDispatch } from "../../services/hooks/hooks";
+import { getNews } from "../../services/actions/get_news"
 
 export type ArticleArrType = {
   id: string,
@@ -53,9 +55,14 @@ const articleArr: ArticleArrType[] = [
 ]
 
 export const News = () => {
+  const dispatch = useAppDispatch()
   const DEFAULT_NEWS_COUNT = 3
   const [show, setShow] = useState(DEFAULT_NEWS_COUNT)
   const UNSHOWED_NEWS_LEFT = (articleArr.length - show)
+
+  useEffect(() => {
+    dispatch(getNews())
+  }, []);
 
   const onShowMoreNewsClick = () => {
     if (UNSHOWED_NEWS_LEFT >= DEFAULT_NEWS_COUNT) {
@@ -64,6 +71,8 @@ export const News = () => {
       setShow(show + UNSHOWED_NEWS_LEFT)
     }
   }
+
+
 
   return (
     <>

@@ -1,4 +1,6 @@
 import { useParams } from "react-router-dom";
+import { RootState } from "../../services/toolkit";
+import { useSelector } from "react-redux";
 import { Title } from "../common/Title";
 import styled from 'styled-components'
 import {
@@ -12,6 +14,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
+import { MarketArrType } from "./Market";
 
 ChartJS.register(
   CategoryScale,
@@ -40,28 +43,31 @@ export const options = {
 
 export const MarketItem = () => {
   const { slug } = useParams()
+  const marketLoaded: MarketArrType[] = useSelector((state: RootState) => state.toolkit.market)
+  const currentItem = marketLoaded.find(item => item.ticker == slug)
 
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-  const data = {
-    labels,
-    datasets: [
-      {
-        fill: true,
-        label: 'Dataset 2',
-        data: labels.map(() => faker.datatype.number({ min: slug ? +slug : 0, max: 1000 })),
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-    ],
-  };
+  // const data = {
+  //   labels,
+  //   datasets: [
+  //     {
+  //       fill: true,
+  //       label: 'Dataset 2',
+  //       data: labels.map(() => faker.datatype.number({ min: slug ? +slug : 0, max: 1000 })),
+  //       borderColor: 'rgb(53, 162, 235)',
+  //       backgroundColor: 'rgba(53, 162, 235, 0.5)',
+  //     },
+  //   ],
+  // };
 
   return (
-    <>
-      <Title>MarketItem {slug}</Title>
-      <ChartView>
+    <>{currentItem &&
+      <Title>{currentItem.name}</Title>}
+      {/* <ChartView>
         <Line options={options} data={data} />
-      </ChartView>
+      </ChartView> */}
+
     </>
   );
 }
