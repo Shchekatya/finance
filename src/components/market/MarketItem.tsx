@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { RootState } from "../../services/toolkit";
 import { useSelector } from "react-redux";
+import { Outlet } from "react-router";
 import { Title } from "../common/Title";
 import styled from 'styled-components'
 import {
@@ -62,12 +63,12 @@ export const MarketItem = () => {
   // };
 
   return (
-    <>{currentItem &&
-      <Title>{currentItem.name}</Title>}
-      {/* <ChartView>
-        <Line options={options} data={data} />
-      </ChartView> */}
-
+    <>
+      {currentItem &&
+        <Title>{currentItem.name}</Title>}
+      <NavLink to={`/market/${slug}`}>About</NavLink>
+      <NavLink to={`/market/${slug}/news`}>News</NavLink>
+      <Outlet />
     </>
   );
 }

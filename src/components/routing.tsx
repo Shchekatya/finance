@@ -3,6 +3,7 @@ import { Market } from "./market/Market";
 import { News } from "./news/News";
 import { MarketItem } from "./market/MarketItem";
 import { NewsItem } from "./news/NewsItem";
+import { MarketItemNews } from "./market/MarketItemNews";
 
 
 export const Routing = () => {
@@ -13,7 +14,9 @@ export const Routing = () => {
         <Route path="/" element={<Market />} />
         <Route path="/news" element={<News />} />
         <Route path="/news/:slug" element={<NewsItem />} />
-        <Route path="/market/:slug" element={<MarketItem />} />
+        <Route path="/market/:slug" element={<MarketItem />}>
+          <Route path="/market/:slug/news" element={<MarketItemNews />} />
+        </Route>
       </Routes>
     </>
   );
